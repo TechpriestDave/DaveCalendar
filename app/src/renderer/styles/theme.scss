@@ -1,0 +1,22 @@
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+    background: none;
+}
+
+::-webkit-scrollbar {
+    background-color: #ddd;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #b8b8b8;
+}
+
+[type="checkbox"].filled-in:checked + label:after {
+  border: 2px solid #f06292;
+  background-color: #f06292;
+}

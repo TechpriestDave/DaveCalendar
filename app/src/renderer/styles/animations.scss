@@ -1,0 +1,121 @@
+.fade-enter-active, .fade-leave-active {
+  transition: .3s ease;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+  opacity: 0;
+}
+
+.fade-leave, .fade-enter-to /* .fade-leave-active in <2.1.8 */ {
+  opacity: 1;
+}
+
+.float-enter-active, .float-leave-active {
+  transition: .3s ease;
+}
+.float-enter, .float-leave-to /* .fade-leave-active in <2.1.8 */ {
+  transform: translateX(0%);
+}
+
+.float-leave, .float-enter-to /* .fade-leave-active in <2.1.8 */ {
+  transform: translateX(100%);
+}
+
+
+
+.slide-left-leave-active {
+  animation: slide-out-left .5s;
+}
+.slide-left-enter-active {
+  animation: slide-in-left .5s;
+}
+@keyframes slide-out-left {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+@keyframes slide-in-left {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.slide-right-leave-active {
+  animation: slide-out-right .5s;
+}
+.slide-right-enter-active {
+  animation: slide-in-right .5s;
+}
+@keyframes slide-out-right {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+@keyframes slide-in-right {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.task-dialog-enter-active {
+  animation: task-dialog-enter .5s;
+}
+.task-dialog-leave-active {
+  animation: task-dialog-leave .5s;
+}
+@keyframes task-dialog-enter {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+@keyframes task-dialog-leave {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+.bounce-enter-active {
+  animation: bounce-in .5s;
+}
+.bounce-leave-active {
+  animation: bounce-out .5s;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0) translateX(100%);
+  }
+  50% {
+    transform: scale(1.5) translateX(80%);
+  }
+  100% {
+    transform: scale(1) translateX(0%);
+  }
+}
+@keyframes bounce-out {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
