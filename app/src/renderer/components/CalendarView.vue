@@ -79,7 +79,7 @@ export default {
   },
   data: () => ({
     transition: "slide-right",
-    eventPaneColor: "#f06292",
+    eventPaneColor: "#1F1A65",
   }),
   computed: {
     month: function month() {
@@ -109,7 +109,7 @@ export default {
       if ((offset - 6) % 7 === 0 || offset % 7 === 0) {
         this.eventPaneColor = "#388e3c";
       } else {
-        this.eventPaneColor = "#f06292";
+        this.eventPaneColor = "#1F1A65";
       }
       this.$store.dispatch("setDay", day);
     },
@@ -138,7 +138,7 @@ export default {
       .date {
         cursor: default;
         width: 80%;
-        color: #f06292;
+        color: #1F1A65;
       }
       .arrow {
         width: 10%;
@@ -175,8 +175,8 @@ export default {
         top: 2em;
 
         & > span {
-          color: #f06292;
-          div.active { background: #f06292; }
+          color: #1F1A65;
+          div.active { background: #1F1A65; }
 
           &:nth-child(7n+6), &:nth-child(7n) {
             color: #388e3c;
@@ -189,7 +189,7 @@ export default {
           font-weight: 300;
 
           &.today {
-            box-shadow: 0 0 2px 2px #f06292;
+            box-shadow: 0 0 2px 2px #1F1A65;
           }
           &.active {
             color: #FFF;

@@ -17,7 +17,7 @@ export default {
     showTaskDialog: false,
   }),
   mounted: function mounted() {
-    console.log(_.map(this.$store.state.tasks.tasks, e => (e.header)));
+
   },
   computed: {
     showNewTaskDialog: function showNewTaskDialog() {

@@ -30,17 +30,21 @@
 }
 @keyframes slide-out-left {
   0% {
+    filter: opacity(1);
     transform: translateX(0%);
   }
   100% {
+    filter: opacity(0);
     transform: translateX(100%);
   }
 }
 @keyframes slide-in-left {
   0% {
+    filter: opacity(0);
     transform: translateX(-100%);
   }
   100% {
+    filter: opacity(1);
     transform: translateX(0%);
   }
 }
@@ -53,17 +57,21 @@
 }
 @keyframes slide-out-right {
   0% {
+    filter: opacity(1);
     transform: translateX(0%);
   }
   100% {
+    filter: opacity(0);
     transform: translateX(-100%);
   }
 }
 @keyframes slide-in-right {
   0% {
+    filter: opacity(0);
     transform: translateX(100%);
   }
   100% {
+    filter: opacity(1);
     transform: translateX(0%);
   }
 }

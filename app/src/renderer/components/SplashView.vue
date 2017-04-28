@@ -50,7 +50,7 @@ export default {
       top: 80%;
       left: 50%;
       transform: translateX(-50%);
-      color: #f06292;
+      color: #1F1A65;
       font-size: 56px;
       font-weight: 200;
       filter: opacity(0);

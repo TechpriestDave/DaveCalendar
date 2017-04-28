@@ -33,7 +33,6 @@
 </script>
 
 <style lang="scss">
-//  @import url(https://fonts.googleapis.com/css?family=Lato:300);
   @import "globals";
 
   html, body, #app, .view {
@@ -43,14 +42,6 @@
     width: 100%;
     overflow: hidden;
   }
-
-  /*
-  #app {
-    border-radius: 10px;
-    background: #FFF;
-  }
-  */
-
   .view {
     box-sizing: border-box;
     padding: 12px;
@@ -66,7 +57,4 @@
     margin: .3em;
   }
 
-  body {
-    //font-family: Lato, sans-serif;
-  }
 </style>

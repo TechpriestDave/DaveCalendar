@@ -2,7 +2,8 @@
   <div class="frame">
       <div class="nav-menu tabs">
         <li class="tab" v-on:click="moveIndicator(1)"><router-link to="/calendar">Calendar</router-link></li>
-        <li class="tab" v-on:click="moveIndicator(2)"><router-link to="/notifications">Notifications</router-link></li>
+        <!--<li class="tab" v-on:click="moveIndicator(2)"><router-link to="/notifications">Notifications</router-link></li>-->
+        <li class="tab" v-on:click="moveIndicator(2)"><router-link to="/alarm">Alarm</router-link></li>
         <li class="tab" v-on:click="moveIndicator(3)"><router-link to="/todo">Todo</router-link></li>
       </div>
     <div class="window-controls">
@@ -26,7 +27,7 @@
 const { ipcRenderer } = require("electron");
 export default {
   mounted: function mounted() {
-    $("*").on("dragstart", (event) => { event.preventDefault(); });
+    $(".frame *").on("dragstart", (event) => { event.preventDefault(); });
     $(".nav-menu").append("<div class='indicator'></div>");
   },
   methods: {
@@ -38,9 +39,8 @@ export default {
     },
     moveIndicator: function moveIndicator(index) {
       const indicator = $(".indicator");
-      indicator.css("width", `${$(`.tab:nth-child(${index})`).width()}px`);
+      indicator.velocity({ width: `${$(`.tab:nth-child(${index})`).width()}px` }, { duration: 300, queue: false, easing: "easeOutQuad" });
       indicator.velocity({ left: $(`.tab:nth-child(${index})`).position().left }, { duration: 300, queue: false, easing: "easeOutQuad" });
-      // indicator.css("left", $(".tab:nth-child("+index+")").position().left + "px");
     },
   },
 };
@@ -63,14 +63,15 @@ export default {
     top: 29px;
     width: 96%;
     padding: 0 2%;
+    overflow: hidden;
 
     .tab {
       -webkit-app-region: no-drag;
       cursor: pointer;
-      a { color: #f06292; }
+      a { color: #1F1A65; }
     }
 
-    .indicator { background-color: #f06292; }
+    .indicator { background-color: #1F1A65; }
   }
 
   .window-controls {

@@ -1,6 +1,6 @@
 <template lang="html">
   <div>
-    <ul :category="category" v-for="(task, index) in tasks" class="task" :key="task.key" :data-index="index">
+    <ul :category="category" v-for="(task, index) in tasks" class="tasklist" :key="task.key" :data-index="index">
       <li>
        <input type="checkbox" class="filled-in" v-on:click(toggleTask(task.key)) v-bind:id="task.key" :value="task.key" v-model="finishedTasks"/>
        <label v-bind:for="task.key">{{task.task}}</label>
@@ -12,11 +12,20 @@
 
 <script>
 import _ from "lodash";
+import draggable from "vuedraggable";
 export default {
   props: ["category"],
   data: () => ({
     finishedTasksTemp: [],
     finishedTasks: [],
+    list: {
+      get() {
+        return this.$store.state.tasks.tasks;
+      },
+      set(task) {
+        this.$store.commit("updateTasks", task);
+      },
+    },
   }),
   computed: {
     tasks: function tasks() {
@@ -24,17 +33,20 @@ export default {
     },
   },
   created: function created() {
+    // WARNING
+    // I don't remember how this even works anymore so if this doesn't seem right it probably isn't.
     this.finishedTasksTemp = _.filter(this.$store.state.tasks.tasks.map(e => e.status === true ? e.key : null), e => _.isNumber(e));
     this.finishedTasks = _.filter(this.$store.state.tasks.tasks.map(e => e.status === true ? e.key : null), e => _.isNumber(e));
-  },
-  mounted: function mounted() {
-    const sortable = Sortable.create($(`category[${this.category}]`));
-    console.log(sortable);
+
+    console.log(this.$store.state.tasks.tasks);
   },
   methods: {
     removeTask(key) {
       this.$store.dispatch("removeTask", key);
     },
+  },
+  components: {
+    draggable,
   },
   watch: {
     finishedTasks: function finishedTasks() {
@@ -63,9 +75,8 @@ export default {
 <style lang="scss">
   .task-category {
     margin-bottom: 44px;
-    .task {
+    .tasklist {
       padding-left: 1em;
-      height: 18px;
 
       li { margin: 14px 8px; }
 

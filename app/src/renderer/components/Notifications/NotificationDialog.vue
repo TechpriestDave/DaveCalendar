@@ -1,25 +1,25 @@
 <template lang="html">
   <transition name="task-dialog" mode="out-in">
-    <div class="new-task-dialog">
-      <h2>Create Task</h2>
-      <i v-on:click="toggleNewTaskDialog" class="material-icons toggle-dialog">add</i>
+    <div class="notification-dialog">
+      <h2>Create Notification</h2>
+      <i v-on:click="toggleDialog" class="material-icons toggle-dialog">add</i>
+      <br>
       <div class="row">
         <div class="input-field col s8">
-          <input v-model="category" id="category" type="text">
-          <label class="white-text" for="category">Category</label>
+          <input v-model="notification" id="notification" type="text">
+          <label class="white-text" for="notification">Notification</label>
         </div>
       </div>
       <div class="row">
-        <div class="input-field col s8">
-          <input v-model="task" id="task" type="text">
-          <label class="white-text" for="task">Task</label>
+        <div class="time-picker">
+
         </div>
       </div>
       <div class="button-container">
-        <div v-on:click="createTask" class="btn-flat">
+        <div v-on:click="createNotification" class="btn-flat">
           <span class="white-text">Add</span>
         </div>
-        <div v-on:click="toggleNewTaskDialog" class="btn-flat">
+        <div v-on:click="toggleDialog" class="btn-flat">
           <span class="white-text">Cancel</span>
         </div>
       </div>
@@ -30,37 +30,29 @@
 <script>
 export default {
   data: () => ({
-    category: "",
-    task: "",
+    notification: "",
+    time: "",
   }),
   computed: {
-    showNewTaskDialog: function showNewTaskDialog() {
-      return this.$store.state.todo.showNewTaskDialog;
+    showDialog: function showDialog() {
+      return this.$store.state.notifications.showDialog;
     },
-  },
-  mounted: function mounted() {
-    $(".datepicker").pickadate();
   },
   methods: {
-    toggleNewTaskDialog: function toggleTaskDialog() {
-      this.$store.dispatch("toggleNewTaskDialog");
-      $(".new-task-dialog").toggleClass("active");
+    toggleDialog: function toggleDialog() {
+      this.$store.dispatch("toggleNotificationDialog");
+      $(".notification-dialog").toggleClass("active");
     },
-    createTask: function createTask() {
-      if (this.category === "") {
-        this.category = "No category";
-      }
-      const task = {
-        key: parseInt(Math.random() * 10000000, 12),
-        category: this.category,
+    createNotification: function createNotification() {
+      const notification = {
+        key: Math.random() * 100000000,
         task: this.task,
-        status: false,
+        date: new Date($("#date").val()),
       };
-      this.$store.dispatch("createTask", task);
-      this.$store.dispatch("toggleNewTaskDialog");
-      $(".new-task-dialog").toggleClass("active");
+      this.$store.dispatch("createNotification", notification);
+      this.$store.dispatch("toggleNotificationDialog");
+      $(".notification-dialog").toggleClass("active");
 
-      this.category = "";
       this.task = "";
       $("#date").val("");
     },
@@ -69,14 +61,14 @@ export default {
 </script>
 
 <style lang="scss">
-  .new-task-dialog {
+  .notification-dialog {
     box-sizing: border-box;
     position: fixed;
     padding: 12px;
-    height: 360px;
+    height: 715px;
     width: 100%;
     left: 0;
-    bottom: -290px;
+    bottom: -645px;
     background-color: #1F1A65;
     color: #FFF;
     font-size: 16px;
@@ -96,6 +88,7 @@ export default {
       bottom: 0px;
       .toggle-dialog {
         transform: rotate(45deg) scale(1.2);
+        opacity: 0;
       }
     }
 

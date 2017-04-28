@@ -1,18 +1,18 @@
 <template lang="html">
   <transition name="task-dialog" mode="out-in">
-    <div class="new-task-dialog">
-      <h2>Create Task</h2>
+    <div class="notification-dialog">
+      <h2>Create Notification</h2>
       <i v-on:click="toggleDialog" class="material-icons toggle-dialog">add</i>
+      <br>
       <div class="row">
         <div class="input-field col s8">
-          <input v-model="task" id="task" type="text">
-          <label class="white-text" for="task">Task</label>
+          <input v-model="notification" id="notification" type="text">
+          <label class="white-text" for="notification">Notification</label>
         </div>
       </div>
       <div class="row">
-        <div class="input-field col s8">
-          <input id="date" class="datepicker" type="date">
-          <label class="white-text" for="date">Date</label>
+        <div class="time-picker">
+
         </div>
       </div>
       <div class="button-container">
@@ -30,20 +30,18 @@
 <script>
 export default {
   data: () => ({
-    task: "",
+    notification: "",
+    time: "",
   }),
   computed: {
     showDialog: function showDialog() {
       return this.$store.state.notifications.showDialog;
     },
   },
-  mounted: function mounted() {
-    $(".datepicker").pickadate();
-  },
   methods: {
     toggleDialog: function toggleDialog() {
       this.$store.dispatch("toggleNotificationDialog");
-      $(".new-notification-dialog").toggleClass("active");
+      $(".notification-dialog").toggleClass("active");
     },
     createNotification: function createNotification() {
       const notification = {
@@ -53,7 +51,7 @@ export default {
       };
       this.$store.dispatch("createNotification", notification);
       this.$store.dispatch("toggleNotificationDialog");
-      $(".new-notification-dialog").toggleClass("active");
+      $(".notification-dialog").toggleClass("active");
 
       this.task = "";
       $("#date").val("");
@@ -63,19 +61,19 @@ export default {
 </script>
 
 <style lang="scss">
-  .new-notification-dialog {
+  .notification-dialog {
     box-sizing: border-box;
     position: fixed;
     padding: 12px;
-    height: 360px;
+    height: 715px;
     width: 100%;
     left: 0;
-    bottom: -290px;
-    background-color: #1976d2;
+    bottom: -645px;
+    background-color: #1F1A65;
     color: #FFF;
     font-size: 16px;
     transition: .5s ease;
-    box-shadow: inset 0 14px 10px -10px rgba(60, 60, 60, .3);
+    box-shadow: inset 0 18px 10px -10px rgba(90, 90, 90, .3);
 
     .toggle-dialog {
       position: absolute;
@@ -90,6 +88,7 @@ export default {
       bottom: 0px;
       .toggle-dialog {
         transform: rotate(45deg) scale(1.2);
+        opacity: 0;
       }
     }
 
@@ -101,19 +100,19 @@ export default {
       box-shadow: 0 1px 0 0 #FFF !important
     }
 
-    .square-button {
-      position: relative;
-      background: transparent;
-      height: 48px;
-      width: 48px;
-      i {
-        color: #FFF;
-        font-size: 48px;
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-      }
+    .input-field input + label {
+      color: #FFF !important;
+    }
+    .row .input-field input {
+      border-bottom: 1px solid #FFF !important;
+      box-shadow: 0 1px 0 0 #FFF !important
+    }
+
+    .button-container {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      padding: 12px;
     }
   }
 </style>
